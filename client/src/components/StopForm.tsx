@@ -1,16 +1,10 @@
-import { useState } from "react";
+type StopFormProps = {
+  currentStop: string;
+  setCurrentStop: (val: string) => void;
+  addStop: () => void;
+};
 
-export default function StopForm() {
-  const [stops, setStops] = useState<string[]>([]);
-  const [currentStop, setCurrentStop] = useState("");
-
-  const addStop = () => {
-    if (currentStop.trim() !== "") {
-      setStops([...stops, currentStop.trim()]);
-      setCurrentStop("");
-    }
-  };
-
+export default function StopForm({ currentStop, setCurrentStop, addStop }: StopFormProps) {
   return (
     <div>
       <label className="block text-sm font-medium mb-1">Add a Stop:</label>
@@ -29,12 +23,6 @@ export default function StopForm() {
           Add
         </button>
       </div>
-
-      <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-        {stops.map((stop, i) => (
-          <li key={i}>{stop}</li>
-        ))}
-      </ul>
     </div>
   );
 }
